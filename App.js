@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, Alert, TouchableWit
 import Header from './components/Header';
 import TodoItem from './components/TodoItem';
 import AddTodo from './components/AddTodo';
-import { MaterialIcons } from '@expo/vector-icons';
+
 
 export default function App() {
   
@@ -32,10 +32,11 @@ export default function App() {
  }
 }
 
+
+
   return (
     <TouchableWithoutFeedback onPress={()=>{
       Keyboard.dismiss();
-      console.log('dismissed keyboard');
     }}>
     <View style={styles.container}>
       <Header/>
