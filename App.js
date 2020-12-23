@@ -3,15 +3,20 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, Alert, TouchableWit
 import Header from './components/Header';
 import TodoItem from './components/TodoItem';
 import AddTodo from './components/AddTodo';
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 export default function App() {
   
  const [todos, setTodos] =useState([
    {text:'buy coffee', key:'1'},
-   {text:'create an app', key:'2'},
-   {text:'play on the switch', key:'3'}
+   
  ]);
+  const clearEverything=()=>{
+    Alert.alert('DELETE ALL!','Are you sure you want to delete the entire list?',[
+      {text:'Yes', onPress: ()=> setTodos('')},
+    {text:'Cancel', onPress:()=>console.log('alert')}]);
+  }
  const pressHandler=(key) =>{
    setTodos((prevTodos) =>{
     return prevTodos.filter(todo => todo.key != key);
@@ -25,12 +30,14 @@ export default function App() {
         ...prevTodos
       ]
    })
+  
  }
  else{
-   Alert.alert('OOPS!','Todos must be over 3 chars long',[
+   Alert.alert('OOPS!','Items must be over 3 chars long',[
    {text:'Understood', onPress: ()=> console.log('alert')}]);
  }
 }
+
 
 
 
@@ -40,6 +47,8 @@ export default function App() {
     }}>
     <View style={styles.container}>
       <Header/>
+      <MaterialIcons name="clear-all" onPress={()=>clearEverything()} size={24} color="black" style={{position:'relative', textAlign:'right', right:20}}  />
+
     <View style={styles.content}>
       <AddTodo submitHandler={submitHandler}/>
   {/***form */}
